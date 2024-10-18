@@ -8,7 +8,7 @@ Introduction
 
 The development and evaluation of a Retrieval-Augmented Generation (RAG) system was here designed to answer questions based on the content of "MOOC 2: Sensing the Human". The RAG approach combines the power of efficient information retrieval with large language models to provide answers to a user informed by an external piece of data that the LLM had no initial access to. This report details our design choices, the specifics of implementation, evaluation methodology, whilst utilising a suite of Python libraries and frameworks, including mainly LangChain, TruLens, ChromaDB, and OpenAI's GPT models.
 
-Design Choices
+# Design Choices
 
 The core of the RAG system was built using LangChain, a framework for chaining language model operations, and OpenAI's GPT models for generating responses. 
 
@@ -26,20 +26,20 @@ Even though LangChain’s RecursiveCharacterTextSplitter could have been used in
 
 The 244 chunks were then vectorised and stored in ChoramDB using OpenAI embeddings for future similarity comparison on retrieval. Again, ease of use was prioritised so after struggling with compatibility issues with Milvus, we stuck with ChromaDB.
 
-Environment Setup
+# Environment Setup
 
 The system was implemented in a Google Colab notebook environment, with necessary Python libraries installed via pip. This setup facilitated an interactive development and testing process. (Trulens presented a challenge returning errors and one of the imports had to be run three times. See below.)
 
 
 
-Template Design
+# Template Design
 
 Multiple prompt templates were crafted to guide the GPT model in generating relevant, concise, and grounded responses. In order to elicit the best possible answer from the model, taking into account the chunks provided by the vector search, several prompt engineering methods were explored like Chain of thought, Zero-Shot Learning with instruction, Self Critical Thinking prompt, Empathy).
 
 They all have a similar token size in order not to add an unnecessary variable to the experiment at this step with regards to API cost. (Some templates were designed with the help of GPT 4.)
 
 
-Feedback Mechanisms
+# Feedback Mechanisms
 
 The TruLens framework was integrated to evaluate the system's performance on groundedness, question/answer relevance, and context relevance. Feedback functions were defined and applied to the RAG system, enabling detailed analysis of the different combinations of the following variables:
 
@@ -53,7 +53,7 @@ The evaluation was conducted by iterating over a set of questions and templates,
 
 The TruLens dashboard was utilised to review and analyse the feedback collected during the evaluation. This analysis provided insights into the system's strengths and areas for improvement, particularly in terms of its ability to generate grounded and contextually relevant responses.
 
-Result analysis
+# Result analysis
 
 As mentioned, app_id was designed dynamically in order to record the results 
 (app_id = f"{llm_name}_{chunk_size}_q{q_index}_t{t_index}_Chain1_ChatApplication
@@ -64,7 +64,7 @@ Both relevance and qs_relevance achieved high scores from the very beginning of 
 Then template 8 gave us the best groundedness results so we carried on experiments based on that choice. We quickly arrived at the chuck_size of 500, which was only beat marginally by the 700 chunk_size, but that would essentially be the split provided by the PDF loader, and also the gains were small in comparison with 500, so the decision would depend on financial availability based on the cost due to the API requests based on token numbers. We settled on 500 for the purpose of this experimentation.
 
 
-Conclusion
+# Conclusion
 
 The implementation of the RAG system, which leverages the LangChain framework, OpenAI's GPT models, and TruLens evaluation, presents several challenges that require careful consideration of various implementation needs. Understanding budget availability is crucial for determining the size of prompts per request, selecting appropriate models, and assessing potential security and privacy concerns when choosing between local deployment and reliance on external models and embeddings.
 
