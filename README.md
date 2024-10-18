@@ -1,10 +1,8 @@
 # Rag_ga_muffin
 
-Inacio Vieira
-Advanced Machine Learning
-Assignment 2
-Report on Implementing a Retrieval-Augmented Generation System with TruLens Evaluation
-Introduction
+# Implementing a Retrieval-Augmented Generation System with TruLens Evaluation
+
+# Introduction
 
 The development and evaluation of a Retrieval-Augmented Generation (RAG) system was here designed to answer questions based on the content of "MOOC 2: Sensing the Human". The RAG approach combines the power of efficient information retrieval with large language models to provide answers to a user informed by an external piece of data that the LLM had no initial access to. This report details our design choices, the specifics of implementation, evaluation methodology, whilst utilising a suite of Python libraries and frameworks, including mainly LangChain, TruLens, ChromaDB, and OpenAI's GPT models.
 
